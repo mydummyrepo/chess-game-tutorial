@@ -20,15 +20,6 @@ jobs:
                  password: ${{ secrets.DOCKERHUB_TOKEN }}
             - name: Build Docker image
               run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chess:${{ github.sha }} .
-            # - name: Run Trivy vulnerability scanner
-            #   uses: aquasecurity/trivy-action@0.28.0
-            #   with:
-            #     image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/chess:${{ github.sha }}
-            #     format: 'table'
-            #     exit-code: '1'
-            #     ignore-unfixed: true
-            #     vuln-type: 'os,library'
-            #     severity: 'CRITICAL,HIGH'
             - name: publish Docker Image
               if: success()
               uses: docker/build-push-action@v6
@@ -36,7 +27,3 @@ jobs:
                 context: .
                 push: true
                 tags: ${{ secrets.DOCKERHUB_USERNAME }}/chess:${{ github.sha }}
-            - name: check kubectl
-              run: kubectl get nodes
-            - name: deploy application
-              run: kubectl apply -f ./manifests
