@@ -88,6 +88,11 @@ jobs:
       - name: Check kubectl access
         run: kubectl get nodes
 
+      # Step 11: Replace the image tag in the YAML file
+      - name: Update Deployment YAML
+        run: |
+          sed -i "s|chess:latest|chess:${{ github.sha }}|g" ./manifests/chess_deploy.yaml
+
       # Step 11: Deploy application
       - name: Deploy application
         run: kubectl apply -f ./manifests
