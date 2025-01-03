@@ -14,13 +14,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Set up Google Cloud SDK
+      # Step 2: Authenticate to Google Cloud
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCLOUD_AUTH }}
+
+      # Step 3: Set up Google Cloud SDK
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          version: 'latest'
-          service_account_key: ${{ secrets.GCLOUD_AUTH }}
           project_id: principal-truck-439009-a1
+          version: 'latest'
 
       # Step 3: Log in to Docker Hub
       - name: Log in to Docker Hub
