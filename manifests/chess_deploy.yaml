@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: chess
-        image: chess:${{ github.sha }}
+        image: chess: ${{ github.sha }}
         resources:
           limits:
             memory: "200Mi"
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: chess_svc
+  name: chess-svc
 spec:
   type: LoadBalancer
   selector:
