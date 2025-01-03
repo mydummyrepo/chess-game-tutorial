@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: chess
 spec:
+  replicas: 2  # Specify the number of replicas
   selector:
     matchLabels:
       app: chess
@@ -13,13 +14,14 @@ spec:
     spec:
       containers:
       - name: chess
-        image: chess:latest
+        image: chess:latest  # Ensure this image is available in your registry
         resources:
           limits:
             memory: "200Mi"
             cpu: "400m"
         ports:
         - containerPort: 80
+
 
 ---
 apiVersion: v1
