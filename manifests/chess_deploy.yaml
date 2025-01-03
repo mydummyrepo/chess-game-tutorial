@@ -14,11 +14,11 @@ spec:
     spec:
       containers:
       - name: chess
-        image: chess:latest  # Ensure this image is available in your registry
+        image: pramodm93/chess:latest
         resources:
           limits:
             memory: "200Mi"
-            cpu: "400m"
+            cpu: "200m"
         ports:
         - containerPort: 80
 

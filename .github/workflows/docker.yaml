@@ -91,7 +91,7 @@ jobs:
       # Step 11: Replace the image tag in the YAML file
       - name: Update Deployment YAML
         run: |
-          sed -i "s|chess:latest|chess:${{ github.sha }}|g" ./manifests/chess_deploy.yaml
+          sed -i "s|pramodm93/chess:latest|pramodm93/chess:${{ github.sha }}|g" ./manifests/chess_deploy.yaml
 
       # Step 11: Deploy application
       - name: Deploy application
