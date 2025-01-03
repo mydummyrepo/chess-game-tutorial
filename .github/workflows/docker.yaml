@@ -26,17 +26,6 @@ jobs:
         with:
           project_id: principal-truck-439009-a1
           version: 'latest'
-      # Install gke-gcloud-auth-plugin
-      - name: Install gke-gcloud-auth-plugin
-        run: |
-          sudo apt-get update && sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
-
-      # Authenticate with GKE cluster
-      - name: Authenticate kubectl
-        run: |
-          gcloud container clusters get-credentials my-gke-cluster \
-            --region asia-south1 \
-            --project "principal-truck-439009-a1"
 
       # Step 3: Log in to Docker Hub
       - name: Log in to Docker Hub
@@ -77,6 +66,11 @@ jobs:
         uses: azure/setup-kubectl@v3
         with:
           version: 'latest'
+
+          # Install gke-gcloud-auth-plugin
+      - name: Install gke-gcloud-auth-plugin
+        run: |
+          sudo apt-get update && sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
 
       # Step 9: Authenticate kubectl to the GKE cluster
       - name: Authenticate kubectl
